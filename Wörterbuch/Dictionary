@@ -1,6 +1,3 @@
-from pprint import pprint # ich finde die ausgebe so schlecht deshalb benutze ich pprint
-
-
 # 1 Erstelle ein leeres Filmbewertung
 film_bewertungen = {}
 
@@ -37,22 +34,23 @@ def filme_ab_6(wörterbuch):
     gut_bewertete_filme = [film for film, bewertung in wörterbuch.items() if bewertung >= 6]  # Filtere Filme mit Bewertung von 6 oder höher.
     return gut_bewertete_filme
 
-
 # 6 Füge einen weiteren Marvel-Film mit Bewertung hinzu und aktualisiere das Wörterbuch.
 film_bewertungen["Spider-Man: No Way Home"] = 9.0
 
 
 # 7 Gib das aktualisierte Wörterbuch aus.
-print("Aktualisiertes Filmbewertungsverzeichnis:") #Das ist extra damit pprint das aktuelle wörterbuch sortirt ausgibt
+print("Aktualisiertes Filmbewertungsverzeichnis:")
 print("{")
-for film, bewertung in film_bewertungen.items():
+for film, bewertung in sorted(film_bewertungen.items()):
     print(f"    '{film}': {bewertung},")
 print("}")
+
 
 # 8 Verwende die oben definierten Funktionen, um Informationen abzurufen und auszugeben.
 durchschnitt = durchschnittliche_bewertung(film_bewertungen)  # Berechne den Durchschnitt.
 bester_film = höchste_bewertung(film_bewertungen)           # Finde den besten Film.
 gut_bewertete_filme = filme_ab_6(film_bewertungen)         # Ermittle die gut bewerteten Filme.
+
 
 print("Durchschnittliche Bewertung aller Filme:", durchschnitt)
 print("Film mit der höchsten Bewertung:", bester_film)
@@ -60,4 +58,4 @@ print("Filme mit einer Bewertung von 6 oder höher:")
 print("[")
 for film in gut_bewertete_filme:
     print(f"    '{film}',")
-print("]")  #Das ist extra damit pprint das aktuelle wörterbuch sortirt ausgibt
+print("]")
