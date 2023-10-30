@@ -1,0 +1,63 @@
+from pprint import pprint # ich finde die ausgebe so schlecht deshalb benutze ich pprint
+
+
+# 1 Erstelle ein leeres Filmbewertung
+film_bewertungen = {}
+
+
+# 2 Filme hinzufügen
+film_bewertungen["Avengers: Endgame"] = 9.5
+film_bewertungen["Black Panther"] = 8.7
+film_bewertungen["Guardians of the Galaxy"] = 8.0
+film_bewertungen["Iron Man"] = 8.5
+film_bewertungen["Thor: Ragnarok"] = 8.2
+
+
+# 3 Schreibe eine Funktion zur Berechnung der durchschnittlichen Bewertung.
+def durchschnittliche_bewertung(wörterbuch):
+    summe = sum(wert for wert in wörterbuch.values())  # Summiere alle Bewertungen im Wörterbuch gespeichert.
+    durchschnitt = summe / len(wörterbuch)  # Berechne den Durchschnitt. Len ist die Menge der Titel, also 5.
+    return durchschnitt
+
+
+# 4 Schreibe eine Funktion zur Ermittlung der höchsten Bewertung.
+def höchste_bewertung(wörterbuch):
+    bester_film = None  # Initialisiere eine Variable, um den besten Film zu speichern, wenn er ermittelt wurde.
+    beste_bewertung = 0  # Fängt bei 0 an, auch wenn GPT und Google -1 sagen, warum?.
+   
+    for film, bewertung in wörterbuch.items():  # Gehe durch jedes Filmtitel-Bewertungs-Paar im Wörterbuch.
+        if bewertung > beste_bewertung:  # Überprüfe, ob die aktuelle Bewertung besser ist als die bisher beste Bewertung.
+            bester_film = film  # Wenn ja, aktualisieren
+            beste_bewertung = bewertung
+    return bester_film
+
+
+# 5 Schreibe eine Funktion zur Ermittlung der Filme mit einer Bewertung von 6 oder höher.
+def filme_ab_6(wörterbuch):
+    gut_bewertete_filme = [film for film, bewertung in wörterbuch.items() if bewertung >= 6]  # Filtere Filme mit Bewertung von 6 oder höher.
+    return gut_bewertete_filme
+
+
+# 6 Füge einen weiteren Marvel-Film mit Bewertung hinzu und aktualisiere das Wörterbuch.
+film_bewertungen["Spider-Man: No Way Home"] = 9.0
+
+
+# 7 Gib das aktualisierte Wörterbuch aus.
+print("Aktualisiertes Filmbewertungsverzeichnis:") #Das ist extra damit pprint das aktuelle wörterbuch sortirt ausgibt
+print("{")
+for film, bewertung in film_bewertungen.items():
+    print(f"    '{film}': {bewertung},")
+print("}")
+
+# 8 Verwende die oben definierten Funktionen, um Informationen abzurufen und auszugeben.
+durchschnitt = durchschnittliche_bewertung(film_bewertungen)  # Berechne den Durchschnitt.
+bester_film = höchste_bewertung(film_bewertungen)           # Finde den besten Film.
+gut_bewertete_filme = filme_ab_6(film_bewertungen)         # Ermittle die gut bewerteten Filme.
+
+print("Durchschnittliche Bewertung aller Filme:", durchschnitt)
+print("Film mit der höchsten Bewertung:", bester_film)
+print("Filme mit einer Bewertung von 6 oder höher:")
+print("[")
+for film in gut_bewertete_filme:
+    print(f"    '{film}',")
+print("]")  #Das ist extra damit pprint das aktuelle wörterbuch sortirt ausgibt
